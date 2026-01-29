@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
                 }
             }
         } catch (error) {
-            console.error("Failed to parse user in AuthContext:", error);
             localStorage.removeItem('user'); // Clear corrupted data
         }
     }, []);

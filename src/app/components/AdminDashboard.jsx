@@ -9,7 +9,6 @@ export const AdminDashboard = ({ onNavigate }) => {
     const [view, setView] = useState('overview');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Persistent Events State
     const [events, setEvents] = useState(() => {
         try {
             const stored = localStorage.getItem('persistent_events');
@@ -17,12 +16,10 @@ export const AdminDashboard = ({ onNavigate }) => {
             const parsed = JSON.parse(stored);
             return Array.isArray(parsed) ? parsed : mockEvents;
         } catch (error) {
-            console.error("Failed to parse persistent_events in Admin:", error);
             return mockEvents;
         }
     });
 
-    // Save to localStorage whenever events change
     useEffect(() => {
         localStorage.setItem('persistent_events', JSON.stringify(events));
         // Dispatch custom event to notify other components (like LandingPage)
@@ -36,7 +33,6 @@ export const AdminDashboard = ({ onNavigate }) => {
         { id: 'v2', name: 'Master Admin', email: 'master@eventhub.com', role: 'admin', details: 'Staff ID: STF-001', submittedDate: '2026-01-29' },
     ]);
 
-    // Mock users data
     const [users, setUsers] = useState([
         { id: '1', name: 'John Doe', email: 'john@example.com', role: 'attendee', verified: true, blocked: false },
         { id: '2', name: 'MusicEvents Inc.', email: 'contact@musicevents.com', role: 'organizer', verified: true, blocked: false },

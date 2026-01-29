@@ -8,11 +8,10 @@ import { AdminDashboard } from './components/AdminDashboard.jsx';
 import { AttendeeProfile } from './components/AttendeeProfile.jsx';
 import { SettingsPage } from './components/SettingsPage.jsx';
 import { MainLayout } from './components/MainLayout.jsx';
-import { Toaster } from './components/ui/sonner.jsx';
+import { Toaster } from 'sonner';
 import { mockEvents } from './data/mockData.js';
 
 function AppContent() {
-    console.log("AppContent mounted. Authentication state:", useAuth().isAuthenticated);
     const { user, isAuthenticated } = useAuth();
     const [currentPage, setCurrentPage] = useState('landing');
     const [events, setEvents] = useState(() => {
@@ -22,12 +21,10 @@ function AppContent() {
             const parsed = JSON.parse(stored);
             return Array.isArray(parsed) ? parsed : mockEvents;
         } catch (error) {
-            console.error("Failed to parse persistent_events:", error);
             return mockEvents;
         }
     });
 
-    // Sync events if changed externally (e.g., from AdminDashboard)
     useEffect(() => {
         const handleEventsUpdate = () => {
             try {
@@ -37,14 +34,12 @@ function AppContent() {
                     if (Array.isArray(parsed)) setEvents(parsed);
                 }
             } catch (error) {
-                console.error("Failed to sync persistent_events:", error);
             }
         };
         window.addEventListener('eventsUpdated', handleEventsUpdate);
         return () => window.removeEventListener('eventsUpdated', handleEventsUpdate);
     }, []);
 
-    // Redirect based on auth state
     useEffect(() => {
         if (isAuthenticated && currentPage === 'login') {
             setCurrentPage('events');

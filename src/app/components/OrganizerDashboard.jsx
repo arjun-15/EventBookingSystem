@@ -10,7 +10,6 @@ export const OrganizerDashboard = ({ onNavigate }) => {
     const [view, setView] = useState('overview');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Persistent Events State
     const [allEvents, setAllEvents] = useState(() => {
         try {
             const stored = localStorage.getItem('persistent_events');
@@ -18,14 +17,13 @@ export const OrganizerDashboard = ({ onNavigate }) => {
             const parsed = JSON.parse(stored);
             return Array.isArray(parsed) ? parsed : mockEvents;
         } catch (error) {
-            console.error("Failed to parse persistent_events in Organizer:", error);
             return mockEvents;
         }
     });
 
+
     const events = allEvents.filter(e => e.organizerId === 'org1' || e.organizerName === user?.name);
 
-    // Sync events if changed externally
     useEffect(() => {
         const handleEventsUpdate = () => {
             const stored = localStorage.getItem('persistent_events');
@@ -35,7 +33,6 @@ export const OrganizerDashboard = ({ onNavigate }) => {
         return () => window.removeEventListener('eventsUpdated', handleEventsUpdate);
     }, []);
 
-    // Mock analytics data
     const analyticsData = [
         { name: 'Jan', sales: 4000, revenue: 2400 },
         { name: 'Feb', sales: 3000, revenue: 1398 },
@@ -357,8 +354,7 @@ const CreateEventForm = ({ onComplete }) => {
             toast.success('Event submitted for review! You will be notified once approved.');
             onComplete();
         } catch (error) {
-            console.error("Failed to save new event:", error);
-            toast.error("Failed to save event. Please try again.");
+            toast.error('Failed to create event. Please try again.');
         }
     };
 

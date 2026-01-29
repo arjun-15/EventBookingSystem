@@ -14,7 +14,6 @@ export const AttendeeProfile = ({ onNavigate }) => {
             const parsed = JSON.parse(stored);
             return Array.isArray(parsed) ? parsed.filter((b) => b.userId === user?.id) : [];
         } catch (error) {
-            console.error("Failed to parse bookings in Profile:", error);
             return [];
         }
     });
