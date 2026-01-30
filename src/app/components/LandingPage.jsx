@@ -3,7 +3,7 @@ import { Calendar, Ticket, Users, Shield, MapPin, ArrowRight } from 'lucide-reac
 export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
-            {/* Hero Section */}
+            
             <div className="relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
                     <h1 className="text-6xl sm:text-7xl font-extrabold text-white mb-6 animate-fade-in">
@@ -23,7 +23,7 @@ export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
                     </button>
                 </div>
 
-                {/* Feature Images */}
+               
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="relative h-64 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all">
@@ -60,7 +60,7 @@ export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
                 </div>
             </div>
 
-            {/* Features Section */}
+            
             <div className="glass py-20 border-x-0">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-4xl text-white text-center mb-16">Why Choose EventHub?</h2>
@@ -97,7 +97,7 @@ export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
                 </div>
             </div>
 
-            {/* Featured Events Section */}
+          
             {featuredEvents.length > 0 && (
                 <div className="py-20 bg-black/10">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,7 +149,7 @@ export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
                 </div>
             )}
 
-            {/* CTA Section */}
+            
             <div className="py-20">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl text-white mb-6">Ready to Get Started?</h2>
@@ -165,7 +165,7 @@ export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
                 </div>
             </div>
 
-            {/* About Section */}
+            
             <div id="about" className="bg-black/20 py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -206,7 +206,7 @@ export const LandingPage = ({ onGetStarted, featuredEvents = [] }) => {
                 </div>
             </div>
 
-            {/* Footer */}
+            
             <footer className="bg-purple-950 py-12 border-t border-white/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8">

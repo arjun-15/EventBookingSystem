@@ -39,11 +39,11 @@ export const EventListingPage = ({ onNavigate }) => {
 
     return (
         <div className="bg-transparent">
-            {/* Search and Filters */}
+            
             <div className="mb-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        {/* Search */}
+                       
                         <div className="md:col-span-2 relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                             <input
@@ -55,7 +55,7 @@ export const EventListingPage = ({ onNavigate }) => {
                             />
                         </div>
 
-                        {/* Category Filter */}
+                        
                         <select
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
@@ -67,7 +67,7 @@ export const EventListingPage = ({ onNavigate }) => {
                             <option value="Art">Art</option>
                         </select>
 
-                        {/* Price Range */}
+                       
                         <div className="flex items-center gap-2">
                             <DollarSign className="w-5 h-5 text-gray-400" />
                             <input
@@ -84,9 +84,9 @@ export const EventListingPage = ({ onNavigate }) => {
                 </div>
             </div>
 
-            {/* Main Content */}
+            
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Featured Events */}
+                
                 {featuredEvents.length > 0 && (
                     <div className="mb-12">
                         <h2 className="text-2xl mb-6">Featured Events</h2>
@@ -104,7 +104,7 @@ export const EventListingPage = ({ onNavigate }) => {
                     </div>
                 )}
 
-                {/* Regular Events */}
+                
                 <div>
                     <h2 className="text-2xl mb-6">All Events</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -126,7 +126,7 @@ export const EventListingPage = ({ onNavigate }) => {
                 )}
             </div>
 
-            {/* Event Detail Modal */}
+            
             {selectedEvent && (
                 <EventDetailModal
                     event={selectedEvent}

@@ -10,7 +10,6 @@ export const OrganizerDashboard = ({ onNavigate }) => {
     const [view, setView] = useState('overview');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Persistent Events State
     const [allEvents, setAllEvents] = useState(() => {
         try {
             const stored = localStorage.getItem('persistent_events');
@@ -18,14 +17,13 @@ export const OrganizerDashboard = ({ onNavigate }) => {
             const parsed = JSON.parse(stored);
             return Array.isArray(parsed) ? parsed : mockEvents;
         } catch (error) {
-            console.error("Failed to parse persistent_events in Organizer:", error);
             return mockEvents;
         }
     });
 
+
     const events = allEvents.filter(e => e.organizerId === 'org1' || e.organizerName === user?.name);
 
-    // Sync events if changed externally
     useEffect(() => {
         const handleEventsUpdate = () => {
             const stored = localStorage.getItem('persistent_events');
@@ -35,7 +33,6 @@ export const OrganizerDashboard = ({ onNavigate }) => {
         return () => window.removeEventListener('eventsUpdated', handleEventsUpdate);
     }, []);
 
-    // Mock analytics data
     const analyticsData = [
         { name: 'Jan', sales: 4000, revenue: 2400 },
         { name: 'Feb', sales: 3000, revenue: 1398 },
@@ -57,7 +54,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
 
     return (
         <div className="min-h-screen bg-transparent">
-            {/* Navigation Tabs */}
+            
             <div className="bg-white border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-4">
@@ -93,11 +90,11 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                 </div>
             </div>
 
-            {/* Content */}
+           
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pb-12">
                 {view === 'overview' && (
                     <div className="space-y-8 animate-in fade-in duration-500">
-                        {/* Stats Cards */}
+                       
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="premium-card p-6 shadow-none">
                                 <div className="flex items-center gap-4">
@@ -134,7 +131,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                             </div>
                         </div>
 
-                        {/* Commission Breakdown */}
+                     
                         <div className="premium-card p-6 shadow-none">
                             <h2 className="text-lg font-bold mb-4">Revenue Distribution</h2>
                             <div className="space-y-3">
@@ -153,7 +150,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                             </div>
                         </div>
 
-                        {/* Live Sales Feed */}
+                        
                         <div className="premium-card p-6 shadow-none">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-lg font-bold">Live Sales Activity</h2>
@@ -187,7 +184,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                             </div>
                         </div>
 
-                        {/* Sales Chart */}
+                       
                         <div className="premium-card p-6 shadow-none">
                             <h2 className="text-lg font-bold mb-6">Sales Analytics</h2>
                             <div className="h-[300px]">
@@ -357,8 +354,7 @@ const CreateEventForm = ({ onComplete }) => {
             toast.success('Event submitted for review! You will be notified once approved.');
             onComplete();
         } catch (error) {
-            console.error("Failed to save new event:", error);
-            toast.error("Failed to save event. Please try again.");
+            toast.error('Failed to create event. Please try again.');
         }
     };
 
@@ -466,7 +462,7 @@ const CreateEventForm = ({ onComplete }) => {
                     />
                 </div>
 
-                {/* Ticket Tiers */}
+                
                 <div className="space-y-4">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-bold">Ticket Tiers</h3>

@@ -14,7 +14,6 @@ export const AttendeeProfile = ({ onNavigate }) => {
             const parsed = JSON.parse(stored);
             return Array.isArray(parsed) ? parsed.filter((b) => b.userId === user?.id) : [];
         } catch (error) {
-            console.error("Failed to parse bookings in Profile:", error);
             return [];
         }
     });
@@ -22,7 +21,7 @@ export const AttendeeProfile = ({ onNavigate }) => {
     return (
         <div className="min-h-screen bg-transparent">
 
-            {/* Content */}
+           
             <div className="mt-8">
                 <div className="mb-8">
                     <h1 className="text-3xl mb-2">My Tickets</h1>
@@ -48,7 +47,7 @@ export const AttendeeProfile = ({ onNavigate }) => {
                     </div>
                 )}
 
-                {/* Order History */}
+                
                 {bookings.length > 0 && (
                     <div className="mt-12">
                         <h2 className="text-2xl mb-6">Order History</h2>
@@ -155,14 +154,14 @@ const TicketCard = ({ booking }) => {
                     </span>
                 </div>
 
-                {/* Perforation Effect */}
+                
                 <div className="flex items-center justify-between gap-4 mb-6">
                     <div className="h-[2px] flex-1 border-t-2 border-dashed border-gray-200"></div>
                     <div className="w-4 h-4 rounded-full bg-transparent border-2 border-gray-100 -mr-8 -ml-8"></div>
                     <div className="h-[2px] flex-1 border-t-2 border-dashed border-gray-200"></div>
                 </div>
 
-                {/* QR Code Section */}
+                
                 <div className="flex flex-col items-center">
                     <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4 transition-transform hover:scale-105 duration-300">
                         <QRCodeSVG value={booking.qrCode} size={160} level="H" includeMargin={true} />
@@ -195,7 +194,7 @@ const TicketCard = ({ booking }) => {
                 </div>
             </div>
 
-            {/* Actions */}
+            
             <div className="border-t p-4 flex gap-2">
                 <button
                     onClick={downloadTicket}
@@ -219,7 +218,7 @@ const TicketCard = ({ booking }) => {
                 </button>
             </div>
 
-            {/* Attendee Details */}
+            
             <div className="border-t p-4">
                 <h4 className="text-sm mb-2">Attendees</h4>
                 <div className="space-y-2">
