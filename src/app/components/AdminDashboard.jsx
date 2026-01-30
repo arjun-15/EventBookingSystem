@@ -22,7 +22,7 @@ export const AdminDashboard = ({ onNavigate }) => {
 
     useEffect(() => {
         localStorage.setItem('persistent_events', JSON.stringify(events));
-        // Dispatch custom event to notify other components (like LandingPage)
+       
         window.dispatchEvent(new Event('eventsUpdated'));
     }, [events]);
 
@@ -76,7 +76,7 @@ export const AdminDashboard = ({ onNavigate }) => {
             toast.success('Review unflagged!');
         } else {
             if (review && review.rating <= 2) {
-                // Block user who left bad review
+               
                 setUsers(users.map(u => u.id === review.userId ? { ...u, blocked: true } : u));
                 toast.warning('Review flagged and user blocked due to bad rating!');
             } else {
@@ -119,7 +119,7 @@ export const AdminDashboard = ({ onNavigate }) => {
     return (
         <div className="min-h-screen bg-transparent">
 
-            {/* Navigation Tabs */}
+          
             <div className="bg-white border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-4">
@@ -181,11 +181,11 @@ export const AdminDashboard = ({ onNavigate }) => {
                 </div>
             </div>
 
-            {/* Content */}
+          
             <div className="mt-8">
                 {view === 'overview' && (
                     <div className="space-y-8">
-                        {/* Stats Cards */}
+                        
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                             <div className="premium-card p-6 shadow-none">
                                 <div className="flex items-center gap-4">
@@ -233,7 +233,7 @@ export const AdminDashboard = ({ onNavigate }) => {
                             </div>
                         </div>
 
-                        {/* Pending Events */}
+                       
                         <div className="premium-card p-6 shadow-none">
                             <h2 className="text-lg mb-4">Pending Event Approvals</h2>
                             <div className="space-y-3">

@@ -65,7 +65,7 @@ export const LoginPage = ({ onBack }) => {
                     </h2>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Email Input */}
+                        
                         <div>
                             <label className="text-white text-sm mb-2 block">Email</label>
                             <div className="relative">
@@ -89,7 +89,7 @@ export const LoginPage = ({ onBack }) => {
                             </div>
                         </div>
 
-                        {/* Password Input */}
+                      
                         <div>
                             <label className="text-white text-sm mb-2 block">Password</label>
                             <div className="relative">
@@ -120,7 +120,7 @@ export const LoginPage = ({ onBack }) => {
                             </div>
                         </div>
 
-                        {/* Role Selection */}
+                        
                         {!isLogin && (
                             <div>
                                 <label className="text-white text-sm mb-2 block">I am a</label>
@@ -173,7 +173,7 @@ export const LoginPage = ({ onBack }) => {
                             </div>
                         )}
 
-                        {/* Organizer Specific Fields */}
+                        
                         {!isLogin && role === 'organizer' && (
                             <div className="space-y-4 animate-fade-in">
                                 <div>
@@ -214,7 +214,7 @@ export const LoginPage = ({ onBack }) => {
                             </div>
                         )}
 
-                        {/* Verification Checkbox for Organizers/Admins */}
+                       
                         {!isLogin && role !== 'attendee' && (
                             <div className={`bg-white/10 p-4 rounded-lg border ${errors.verification ? 'border-red-400' : 'border-transparent'}`}>
                                 <label className="flex items-start gap-3 cursor-pointer">
@@ -232,7 +232,7 @@ export const LoginPage = ({ onBack }) => {
                             </div>
                         )}
 
-                        {/* Terms and Conditions */}
+                        
                         <div className={`bg-white/10 p-4 rounded-lg border ${errors.terms ? 'border-red-400' : 'border-transparent'}`}>
                             <label className="flex items-start gap-3 cursor-pointer">
                                 <input
@@ -248,7 +248,7 @@ export const LoginPage = ({ onBack }) => {
                             {errors.terms && <p className="text-red-400 text-xs mt-2">{errors.terms}</p>}
                         </div>
 
-                        {/* Submit Button */}
+                       
                         <button
                             type="submit"
                             className="w-full bg-yellow-400 hover:bg-yellow-500 text-purple-900 py-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] font-bold text-lg shadow-lg flex items-center justify-center gap-2"
@@ -260,7 +260,7 @@ export const LoginPage = ({ onBack }) => {
                         </button>
                     </form>
 
-                    {/* Toggle Login/Signup */}
+                    
                     <div className="mt-6 text-center">
                         <button
                             onClick={() => setIsLogin(!isLogin)}

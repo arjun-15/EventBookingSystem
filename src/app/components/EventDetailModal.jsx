@@ -8,10 +8,10 @@ export const EventDetailModal = ({ event, onClose }) => {
     const [selectedTier, setSelectedTier] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [showCheckout, setShowCheckout] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
+    const [timeLeft, setTimeLeft] = useState(600);
     const [timerActive, setTimerActive] = useState(false);
 
-    // Timer for cart reservation
+    
     useEffect(() => {
         if (timerActive && timeLeft > 0) {
             const timer = setInterval(() => {
@@ -62,7 +62,7 @@ export const EventDetailModal = ({ event, onClose }) => {
 
     const addToCalendar = () => {
         const startDate = new Date(`${event.date}T${event.time}`);
-        const endDate = new Date(startDate.getTime() + 3 * 60 * 60 * 1000); // +3 hours
+        const endDate = new Date(startDate.getTime() + 3 * 60 * 60 * 1000); 
 
         const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${endDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.venue)}`;
 
@@ -73,7 +73,7 @@ export const EventDetailModal = ({ event, onClose }) => {
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
             <div className="bg-white rounded-2xl max-w-4xl w-full my-8 max-h-[90vh] overflow-y-auto">
-                {/* Header */}
+                
                 <div className="sticky top-0 bg-white border-b p-4 flex items-center justify-between z-10">
                     <h2 className="text-2xl">{event.title}</h2>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
@@ -81,7 +81,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                     </button>
                 </div>
 
-                {/* Banner Image */}
+                
                 <div className="relative h-64">
                     <img
                         src={event.bannerImage}
@@ -90,9 +90,9 @@ export const EventDetailModal = ({ event, onClose }) => {
                     />
                 </div>
 
-                {/* Content */}
+
                 <div className="p-6">
-                    {/* Event Info */}
+                   
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <h3 className="text-lg mb-4">Event Details</h3>
@@ -115,7 +115,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                                 </div>
                             </div>
 
-                            {/* Add to Calendar */}
+                            
                             <button
                                 onClick={addToCalendar}
                                 className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
@@ -153,7 +153,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     </div>
 
-                    {/* Interactive Map Placeholder */}
+                    
                     <div className="mb-6">
                         <h3 className="text-lg mb-3">Venue Map</h3>
                         <div className="w-full h-48 bg-gray-100 rounded-xl border border-dashed border-gray-300 flex flex-col items-center justify-center gap-2 relative overflow-hidden group">
@@ -166,13 +166,13 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     </div>
 
-                    {/* Description */}
+                    
                     <div className="mb-6">
                         <h3 className="text-lg mb-3">About This Event</h3>
                         <p className="text-gray-600">{event.description}</p>
                     </div>
 
-                    {/* Schedule */}
+                    
                     {event.schedule && event.schedule.length > 0 && (
                         <div className="mb-6">
                             <h3 className="text-lg mb-3">Event Schedule</h3>
@@ -187,7 +187,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     )}
 
-                    {/* Speaker Bios */}
+                    
                     {event.speakerBios && event.speakerBios.length > 0 && (
                         <div className="mb-6">
                             <h3 className="text-lg mb-3">Speakers</h3>
@@ -199,7 +199,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     )}
 
-                    {/* Ticket Tiers */}
+                    
                     {!showCheckout ? (
                         <div>
                             <h3 className="text-lg mb-4">Select Your Tickets</h3>
@@ -279,7 +279,7 @@ const CheckoutForm = ({
         e.preventDefault();
         setIsProcessing(true);
 
-        // Simulate secure bank verification
+        
         setTimeout(() => {
             const booking = {
                 id: Math.random().toString(36).substr(2, 9),
@@ -302,7 +302,7 @@ const CheckoutForm = ({
                 attendeeDetails,
             };
 
-            // Store booking
+          
             const storedBookings = localStorage.getItem('bookings');
             const bookings = storedBookings ? JSON.parse(storedBookings) : [];
             bookings.push(booking);
@@ -357,7 +357,7 @@ const CheckoutForm = ({
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Quantity Selector */}
+                
                 <div>
                     <label className="block text-sm mb-2">Number of Tickets</label>
                     <input
@@ -370,7 +370,7 @@ const CheckoutForm = ({
                     />
                 </div>
 
-                {/* Attendee Details */}
+                
                 {attendeeDetails.map((attendee, index) => (
                     <div key={index} className="border rounded-lg p-4">
                         <h4 className="mb-3">Attendee {index + 1}</h4>
@@ -415,7 +415,7 @@ const CheckoutForm = ({
                     </div>
                 ))}
 
-                {/* Payment Summary */}
+            
                 <div className="bg-gray-50 rounded-lg p-4">
                     <div className="flex justify-between mb-2">
                         <span>{tier.name} x {quantity}</span>
@@ -427,7 +427,7 @@ const CheckoutForm = ({
                     </div>
                 </div>
 
-                {/* Payment Method Selector */}
+                
                 <div>
                     <label className="block text-sm font-bold text-gray-500 uppercase mb-3">Select Payment Method</label>
                     <div className="grid grid-cols-3 gap-3">
@@ -453,7 +453,7 @@ const CheckoutForm = ({
                     </div>
                 </div>
 
-                {/* Mock Payment */}
+             
                 {paymentMethod === 'card' && (
                     <div className="border rounded-2xl p-6 bg-purple-50/30 border-purple-100 animate-in slide-in-from-top-2 duration-300">
                         <div className="flex items-center justify-between mb-4">
@@ -493,7 +493,7 @@ const CheckoutForm = ({
                     </div>
                 )}
 
-                {/* Buttons */}
+                
                 <div className="flex gap-4">
                     <button
                         type="button"

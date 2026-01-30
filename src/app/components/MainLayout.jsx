@@ -24,7 +24,7 @@ export const MainLayout = ({ children, onNavigate, activePage }) => {
 
     return (
         <div className="flex min-h-screen w-full bg-gray-50">
-            {/* Desktop Sidebar */}
+            
             <aside className="hidden md:flex w-64 flex-col bg-white border-r border-gray-200">
                 <div className="p-6 border-b">
                     <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ export const MainLayout = ({ children, onNavigate, activePage }) => {
                 </div>
             </aside>
 
-            {/* Mobile Sidebar (Overlay) */}
+           
             {isMobileMenuOpen && (
                 <div className="fixed inset-0 z-50 flex md:hidden">
                     <div className="fixed inset-0 bg-black/50" onClick={() => setIsMobileMenuOpen(false)}></div>
