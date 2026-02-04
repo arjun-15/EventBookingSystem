@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         // Mock login - in real app, this would call an API
         const newUser = {
             id: Math.random().toString(36).substr(2, 9),
-            name: email.split('@')[0],
+            name: extraData.name || email.split('@')[0],
             email,
             role: role,
             verified,

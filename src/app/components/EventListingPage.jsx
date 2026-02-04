@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Calendar, MapPin, DollarSign, Share2, LogOut, User, LayoutDashboard } from 'lucide-react';
+import { Search, Filter, Calendar, MapPin, IndianRupee, Share2, LogOut, User, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { mockEvents } from '../data/mockData.js';
 import { EventDetailModal } from './EventDetailModal.jsx';
@@ -39,11 +39,11 @@ export const EventListingPage = ({ onNavigate }) => {
 
     return (
         <div className="bg-transparent">
-            
+
             <div className="mb-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                       
+
                         <div className="md:col-span-2 relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                             <input
@@ -55,7 +55,7 @@ export const EventListingPage = ({ onNavigate }) => {
                             />
                         </div>
 
-                        
+
                         <select
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
@@ -67,26 +67,26 @@ export const EventListingPage = ({ onNavigate }) => {
                             <option value="Art">Art</option>
                         </select>
 
-                       
+
                         <div className="flex items-center gap-2">
-                            <DollarSign className="w-5 h-5 text-gray-400" />
+                            <IndianRupee className="w-5 h-5 text-gray-400" />
                             <input
                                 type="range"
                                 min="0"
-                                max="500"
+                                max="10000"
                                 value={priceRange[1]}
                                 onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
                                 className="flex-1"
                             />
-                            <span className="text-sm text-gray-600">${priceRange[1]}</span>
+                            <span className="text-sm text-gray-600">₹{priceRange[1]}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                
+
                 {featuredEvents.length > 0 && (
                     <div className="mb-12">
                         <h2 className="text-2xl mb-6">Featured Events</h2>
@@ -104,7 +104,7 @@ export const EventListingPage = ({ onNavigate }) => {
                     </div>
                 )}
 
-                
+
                 <div>
                     <h2 className="text-2xl mb-6">All Events</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -126,7 +126,7 @@ export const EventListingPage = ({ onNavigate }) => {
                 )}
             </div>
 
-            
+
             {selectedEvent && (
                 <EventDetailModal
                     event={selectedEvent}
@@ -169,8 +169,8 @@ const EventCard = ({ event, onSelect, onShare, featured }) => {
                         <span>{event.venue}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 text-sm">
-                        <DollarSign className="w-4 h-4 text-green-600" />
-                        <span className="font-semibold text-gray-900">From ${minPrice}</span>
+                        <IndianRupee className="w-4 h-4 text-green-600" />
+                        <span className="font-semibold text-gray-900">From ₹{minPrice}</span>
                     </div>
                 </div>
                 <div className="flex gap-2">

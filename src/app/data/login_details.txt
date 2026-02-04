@@ -1,0 +1,21 @@
+# Event Ticketing System - Login Credentials
+
+Since the application uses a mock authentication system, you can use the following credentials to test the different user roles. Use any password (e.g., `password123`).
+
+### 1. Admin Role
+- **Email:** `admin@eventhub.com`
+- **Password:** `admin123`
+- **Note:** Admins have full access to event moderation, user management, and platform settings.
+
+### 2. Organizer Role
+- **Email:** `organizer@events.com`
+- **Password:** `organizer123`
+- **Note:** Organizers can create events, manage their own events, and view sales analytics.
+
+### 3. Attendee Role
+- **Email:** `attendee@user.com`
+- **Password:** `attendee123`
+- **Note:** Attendees can browse events, book tickets (in ₹), and view their ticket history.
+
+---
+**Tip:** For new accounts, use the "Create Account" page. Remember that "Admin" accounts cannot be created via the registration page anymore (as per recent updates); use the pre-defined admin email above for testing admin features.
