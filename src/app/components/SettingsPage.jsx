@@ -28,11 +28,11 @@ export const SettingsPage = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Left Column - Navigation */}
+               
                 <div className="lg:col-span-1 space-y-4">
                     <div className="premium-card p-6 shadow-none flex items-center gap-4">
                         <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                            {user?.name?.[0].toUpperCase()}
+                            {user?.name?.[0]?.toUpperCase()}
                         </div>
                         <div>
                             <h2 className="text-lg font-bold text-gray-900">{user?.name}</h2>
@@ -44,7 +44,6 @@ export const SettingsPage = () => {
                         {[
                             { icon: User, label: "Profile", active: true },
                             { icon: Bell, label: "Notifications" },
-                            { icon: Shield, label: "Security" },
                             { icon: HelpCircle, label: "Help & Support" },
                         ].map((item) => (
                             <button
@@ -61,7 +60,7 @@ export const SettingsPage = () => {
                         ))}
                     </div>
 
-                    {/* Contact Admin Card */}
+                    
                     <div className="bg-gradient-to-br from-indigo-600 to-purple-700 p-6 rounded-3xl text-white shadow-xl shadow-purple-200">
                         <h3 className="text-lg font-bold mb-2">Need Help?</h3>
                         <p className="text-indigo-100 text-sm mb-6 leading-relaxed">
@@ -77,7 +76,7 @@ export const SettingsPage = () => {
                     </div>
                 </div>
 
-                {/* Right Column - Settings Form */}
+               
                 <div className="lg:col-span-2 space-y-6">
                     <div className="premium-card p-8 shadow-none bg-white">
                         <h3 className="text-xl font-bold mb-6 flex items-center gap-2">

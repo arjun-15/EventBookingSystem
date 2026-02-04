@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, CheckCircle, XCircle, Ban, Settings, TrendingUp, Users as UsersIcon, Calendar, Search, Star } from 'lucide-react';
+import { ArrowLeft, CheckCircle, XCircle, Ban, Settings, IndianRupee, Users as UsersIcon, Calendar, Search, Star } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { mockEvents, mockReviews, mockCommissionSettings } from '../data/mockData.js';
 import { toast } from 'sonner';
@@ -22,7 +22,7 @@ export const AdminDashboard = ({ onNavigate }) => {
 
     useEffect(() => {
         localStorage.setItem('persistent_events', JSON.stringify(events));
-       
+
         window.dispatchEvent(new Event('eventsUpdated'));
     }, [events]);
 
@@ -76,7 +76,7 @@ export const AdminDashboard = ({ onNavigate }) => {
             toast.success('Review unflagged!');
         } else {
             if (review && review.rating <= 2) {
-               
+
                 setUsers(users.map(u => u.id === review.userId ? { ...u, blocked: true } : u));
                 toast.warning('Review flagged and user blocked due to bad rating!');
             } else {
@@ -119,7 +119,7 @@ export const AdminDashboard = ({ onNavigate }) => {
     return (
         <div className="min-h-screen bg-transparent">
 
-          
+
             <div className="bg-white border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-4">
@@ -181,11 +181,11 @@ export const AdminDashboard = ({ onNavigate }) => {
                 </div>
             </div>
 
-          
+
             <div className="mt-8">
                 {view === 'overview' && (
                     <div className="space-y-8">
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                             <div className="premium-card p-6 shadow-none">
                                 <div className="flex items-center gap-4">
@@ -212,11 +212,11 @@ export const AdminDashboard = ({ onNavigate }) => {
                             <div className="premium-card p-6 shadow-none">
                                 <div className="flex items-center gap-4">
                                     <div className="p-3 bg-green-100 rounded-lg">
-                                        <TrendingUp className="w-6 h-6 text-green-600" />
+                                        <IndianRupee className="w-6 h-6 text-green-600" />
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-600">Platform Revenue</p>
-                                        <p className="text-2xl">${totalRevenue.toLocaleString()}</p>
+                                        <p className="text-2xl">₹{totalRevenue.toLocaleString()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -227,13 +227,13 @@ export const AdminDashboard = ({ onNavigate }) => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-600">Admin Commission</p>
-                                        <p className="text-2xl">${adminRevenue.toFixed(0)}</p>
+                                        <p className="text-2xl">₹{adminRevenue.toFixed(0)}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                       
+
                         <div className="premium-card p-6 shadow-none">
                             <h2 className="text-lg mb-4">Pending Event Approvals</h2>
                             <div className="space-y-3">

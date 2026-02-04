@@ -11,7 +11,7 @@ export const EventDetailModal = ({ event, onClose }) => {
     const [timeLeft, setTimeLeft] = useState(600);
     const [timerActive, setTimerActive] = useState(false);
 
-    
+
     useEffect(() => {
         if (timerActive && timeLeft > 0) {
             const timer = setInterval(() => {
@@ -62,7 +62,7 @@ export const EventDetailModal = ({ event, onClose }) => {
 
     const addToCalendar = () => {
         const startDate = new Date(`${event.date}T${event.time}`);
-        const endDate = new Date(startDate.getTime() + 3 * 60 * 60 * 1000); 
+        const endDate = new Date(startDate.getTime() + 3 * 60 * 60 * 1000);
 
         const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${endDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.venue)}`;
 
@@ -73,7 +73,7 @@ export const EventDetailModal = ({ event, onClose }) => {
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
             <div className="bg-white rounded-2xl max-w-4xl w-full my-8 max-h-[90vh] overflow-y-auto">
-                
+
                 <div className="sticky top-0 bg-white border-b p-4 flex items-center justify-between z-10">
                     <h2 className="text-2xl">{event.title}</h2>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
@@ -81,7 +81,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                     </button>
                 </div>
 
-                
+
                 <div className="relative h-64">
                     <img
                         src={event.bannerImage}
@@ -92,7 +92,7 @@ export const EventDetailModal = ({ event, onClose }) => {
 
 
                 <div className="p-6">
-                   
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <h3 className="text-lg mb-4">Event Details</h3>
@@ -115,7 +115,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                                 </div>
                             </div>
 
-                            
+
                             <button
                                 onClick={addToCalendar}
                                 className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
@@ -153,7 +153,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     </div>
 
-                    
+
                     <div className="mb-6">
                         <h3 className="text-lg mb-3">Venue Map</h3>
                         <div className="w-full h-48 bg-gray-100 rounded-xl border border-dashed border-gray-300 flex flex-col items-center justify-center gap-2 relative overflow-hidden group">
@@ -166,13 +166,13 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     </div>
 
-                    
+
                     <div className="mb-6">
                         <h3 className="text-lg mb-3">About This Event</h3>
                         <p className="text-gray-600">{event.description}</p>
                     </div>
 
-                    
+
                     {event.schedule && event.schedule.length > 0 && (
                         <div className="mb-6">
                             <h3 className="text-lg mb-3">Event Schedule</h3>
@@ -187,7 +187,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     )}
 
-                    
+
                     {event.speakerBios && event.speakerBios.length > 0 && (
                         <div className="mb-6">
                             <h3 className="text-lg mb-3">Speakers</h3>
@@ -199,7 +199,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                         </div>
                     )}
 
-                    
+
                     {!showCheckout ? (
                         <div>
                             <h3 className="text-lg mb-4">Select Your Tickets</h3>
@@ -210,7 +210,7 @@ export const EventDetailModal = ({ event, onClose }) => {
                                         className="border rounded-lg p-4 hover:border-purple-600 hover:shadow-lg transition-all"
                                     >
                                         <h4 className="text-lg mb-2">{tier.name}</h4>
-                                        <p className="text-3xl text-purple-600 mb-3">${tier.price}</p>
+                                        <p className="text-3xl text-purple-600 mb-3">₹{tier.price}</p>
                                         <ul className="space-y-2 mb-4">
                                             {tier.features.map((feature, index) => (
                                                 <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
@@ -279,7 +279,7 @@ const CheckoutForm = ({
         e.preventDefault();
         setIsProcessing(true);
 
-        
+
         setTimeout(() => {
             const booking = {
                 id: Math.random().toString(36).substr(2, 9),
@@ -302,7 +302,7 @@ const CheckoutForm = ({
                 attendeeDetails,
             };
 
-          
+
             const storedBookings = localStorage.getItem('bookings');
             const bookings = storedBookings ? JSON.parse(storedBookings) : [];
             bookings.push(booking);
@@ -357,7 +357,7 @@ const CheckoutForm = ({
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 <div>
                     <label className="block text-sm mb-2">Number of Tickets</label>
                     <input
@@ -370,7 +370,7 @@ const CheckoutForm = ({
                     />
                 </div>
 
-                
+
                 {attendeeDetails.map((attendee, index) => (
                     <div key={index} className="border rounded-lg p-4">
                         <h4 className="mb-3">Attendee {index + 1}</h4>
@@ -415,23 +415,23 @@ const CheckoutForm = ({
                     </div>
                 ))}
 
-            
+
                 <div className="bg-gray-50 rounded-lg p-4">
                     <div className="flex justify-between mb-2">
                         <span>{tier.name} x {quantity}</span>
-                        <span>${tier.price * quantity}</span>
+                        <span>₹{tier.price * quantity}</span>
                     </div>
                     <div className="border-t pt-2 flex justify-between">
                         <span>Total</span>
-                        <span className="text-xl">${tier.price * quantity}</span>
+                        <span className="text-xl">₹{tier.price * quantity}</span>
                     </div>
                 </div>
 
-                
+
                 <div>
                     <label className="block text-sm font-bold text-gray-500 uppercase mb-3">Select Payment Method</label>
-                    <div className="grid grid-cols-3 gap-3">
-                        {['card', 'paypal', 'transfer'].map((method) => (
+                    <div className="grid grid-cols-2 gap-3">
+                        {['card', 'online'].map((method) => (
                             <button
                                 key={method}
                                 type="button"
@@ -442,18 +442,17 @@ const CheckoutForm = ({
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${paymentMethod === method ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400'
                                     }`}>
                                     {method === 'card' && <Lock className="w-5 h-5" />}
-                                    {method === 'paypal' && <Share2 className="w-5 h-5" />}
-                                    {method === 'transfer' && <MapPin className="w-5 h-5" />}
+                                    {method === 'online' && <CheckSquare className="w-5 h-5" />}
                                 </div>
                                 <span className={`text-[10px] font-bold uppercase ${paymentMethod === method ? 'text-purple-700' : 'text-gray-400'}`}>
-                                    {method === 'card' ? 'Credit Card' : method === 'paypal' ? 'PayPal' : 'Transfer'}
+                                    {method === 'card' ? 'Credit Card' : 'Online Payment'}
                                 </span>
                             </button>
                         ))}
                     </div>
                 </div>
 
-             
+
                 {paymentMethod === 'card' && (
                     <div className="border rounded-2xl p-6 bg-purple-50/30 border-purple-100 animate-in slide-in-from-top-2 duration-300">
                         <div className="flex items-center justify-between mb-4">
@@ -489,11 +488,11 @@ const CheckoutForm = ({
                 {paymentMethod !== 'card' && (
                     <div className="border rounded-2xl p-6 bg-blue-50/30 border-blue-100 text-center animate-in slide-in-from-top-2 duration-300">
                         <p className="text-blue-800 font-medium mb-2">Redirecting to Online Gateway</p>
-                        <p className="text-blue-600 text-xs">You will be securely redirected to complete your {paymentMethod} payment after clicking finish.</p>
+                        <p className="text-blue-600 text-xs">You will be securely redirected to complete your Online Payment after clicking finish.</p>
                     </div>
                 )}
 
-                
+
                 <div className="flex gap-4">
                     <button
                         type="button"

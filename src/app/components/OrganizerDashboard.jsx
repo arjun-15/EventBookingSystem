@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Plus, Users, DollarSign, TrendingUp, Mail, QrCode, Search as SearchBarIcon } from 'lucide-react';
+import { ArrowLeft, Plus, Users, IndianRupee, TrendingUp, Mail, QrCode, Search as SearchBarIcon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { mockEvents, mockCommissionSettings } from '../data/mockData.js';
@@ -54,7 +54,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
 
     return (
         <div className="min-h-screen bg-transparent">
-            
+
             <div className="bg-white border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-4">
@@ -90,20 +90,20 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                 </div>
             </div>
 
-           
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pb-12">
                 {view === 'overview' && (
                     <div className="space-y-8 animate-in fade-in duration-500">
-                       
+
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="premium-card p-6 shadow-none">
                                 <div className="flex items-center gap-4">
                                     <div className="p-3 bg-purple-100 rounded-lg">
-                                        <DollarSign className="w-6 h-6 text-purple-600" />
+                                        <IndianRupee className="w-6 h-6 text-purple-600" />
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-600">Total Revenue</p>
-                                        <p className="text-2xl font-bold">${totalRevenue.toLocaleString()}</p>
+                                        <p className="text-2xl font-bold">₹{totalRevenue.toLocaleString()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-600">Your Share ({mockCommissionSettings.organizerPercentage}%)</p>
-                                        <p className="text-2xl font-bold">${organizerRevenue.toLocaleString()}</p>
+                                        <p className="text-2xl font-bold">₹{organizerRevenue.toLocaleString()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -131,26 +131,26 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                             </div>
                         </div>
 
-                     
+
                         <div className="premium-card p-6 shadow-none">
                             <h2 className="text-lg font-bold mb-4">Revenue Distribution</h2>
                             <div className="space-y-3">
                                 <div className="flex justify-between items-center text-gray-600">
                                     <span>Your Earnings ({mockCommissionSettings.organizerPercentage}%)</span>
-                                    <span className="text-xl font-medium text-gray-900">${organizerRevenue.toFixed(2)}</span>
+                                    <span className="text-xl font-medium text-gray-900">₹{organizerRevenue.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between items-center text-gray-600">
                                     <span>Platform Fee ({mockCommissionSettings.adminPercentage}%)</span>
-                                    <span className="text-xl font-medium text-gray-900">${adminCommission.toFixed(2)}</span>
+                                    <span className="text-xl font-medium text-gray-900">₹{adminCommission.toFixed(2)}</span>
                                 </div>
                                 <div className="border-t pt-3 flex justify-between items-center">
                                     <span className="text-lg font-bold">Total Revenue</span>
-                                    <span className="text-2xl font-bold text-purple-600">${totalRevenue.toFixed(2)}</span>
+                                    <span className="text-2xl font-bold text-purple-600">₹{totalRevenue.toFixed(2)}</span>
                                 </div>
                             </div>
                         </div>
 
-                        
+
                         <div className="premium-card p-6 shadow-none">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-lg font-bold">Live Sales Activity</h2>
@@ -176,7 +176,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                                             </div>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-sm font-bold text-gray-900">{sale.amount}</p>
+                                            <p className="text-sm font-bold text-gray-900">{sale.amount.replace('$', '₹')}</p>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase">{sale.time}</p>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@ export const OrganizerDashboard = ({ onNavigate }) => {
                             </div>
                         </div>
 
-                       
+
                         <div className="premium-card p-6 shadow-none">
                             <h2 className="text-lg font-bold mb-6">Sales Analytics</h2>
                             <div className="h-[300px]">
@@ -283,7 +283,7 @@ const EventManagementCard = ({ event }) => {
                         </div>
                         <div>
                             <p className="text-xs text-gray-500 uppercase font-bold mb-1">Revenue</p>
-                            <p className="text-xl font-bold text-purple-600">${revenue.toLocaleString()}</p>
+                            <p className="text-xl font-bold text-purple-600">₹{revenue.toLocaleString()}</p>
                         </div>
                     </div>
 
@@ -462,7 +462,7 @@ const CreateEventForm = ({ onComplete }) => {
                     />
                 </div>
 
-                
+
                 <div className="space-y-4">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-bold">Ticket Tiers</h3>
@@ -495,7 +495,7 @@ const CreateEventForm = ({ onComplete }) => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] font-bold text-gray-500 uppercase mb-1">Price ($)</label>
+                                    <label className="block text-[10px] font-bold text-gray-500 uppercase mb-1">Price (₹)</label>
                                     <input
                                         type="number"
                                         placeholder="99"
