@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from 'react';
+import { AuthProvider, useAuth } from './context/AuthContext.jsx';
+import { LandingPage } from './components/LandingPage.jsx';
+import { LoginPage } from './components/LoginPage.jsx';
+import { EventListingPage } from './components/EventListingPage.jsx';
+import { OrganizerDashboard } from './components/OrganizerDashboard.jsx';
+import { AdminDashboard } from './components/AdminDashboard.jsx';
+import { AttendeeProfile } from './components/AttendeeProfile.jsx';
+import { SettingsPage } from './components/SettingsPage.jsx';
+import { MainLayout } from './components/MainLayout.jsx';
+import { Toaster } from 'sonner';
+import { eventService } from './api/eventService';
+
+function AppContent() {
+    const { user, isAuthenticated } = useAuth();
+    const [currentPage, setCurrentPage] = useState('landing');
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const data = await eventService.getAllEvents();
+                setEvents(data || []);
+            } catch (error) {
+                console.error('Failed to fetch events in App:', error);
+            }
+        };
+        fetchEvents();
+    }, []);
+
+    useEffect(() => {
+        if (isAuthenticated && currentPage === 'login') {
+            setCurrentPage('events');
+        }
+        if (!isAuthenticated && currentPage !== 'landing' && currentPage !== 'login') {
+            setCurrentPage('landing');
+        }
+    }, [isAuthenticated, currentPage]);
+
+    const renderPage = () => {
+        if (!isAuthenticated) {
+            if (currentPage === 'login') {
+                return <LoginPage onBack={() => setCurrentPage('landing')} />;
+            }
+            const featuredEvents = events.filter(e => e.featured && e.approved);
+            return <LandingPage onGetStarted={() => setCurrentPage('login')} featuredEvents={featuredEvents} />;
+        }
+
+        // Authenticated views wrapped in MainLayout
+        let pageContent;
+        switch (currentPage) {
+            case 'dashboard':
+                pageContent = user?.role === 'admin' ?
+                    <AdminDashboard onNavigate={setCurrentPage} /> :
+                    <OrganizerDashboard onNavigate={setCurrentPage} />;
+                break;
+            case 'profile':
+                pageContent = <AttendeeProfile onNavigate={setCurrentPage} />;
+                break;
+            case 'settings':
+                pageContent = <SettingsPage />;
+                break;
+            default:
+                pageContent = <EventListingPage onNavigate={setCurrentPage} />;
+        }
+
+        return (
+            <MainLayout onNavigate={setCurrentPage} activePage={currentPage}>
+                {pageContent}
+            </MainLayout>
+        );
+    };
+
+    return (
+        <>
+            {renderPage()}
+            <Toaster position="top-right" richColors />
+        </>
+    );
+}
+
+export default function App() {
+    return (
+        <AuthProvider>
+            <AppContent />
+        </AuthProvider>
+    );
+}

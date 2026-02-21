@@ -1,0 +1,20 @@
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.settings/
+.classpath
+.factorypath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# General Build and Dependencies
+target/
+node_modules/
+dist/
+build/
+bin/

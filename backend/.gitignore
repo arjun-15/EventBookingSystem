@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# Allow directories so git can traverse into them
+!*/
+
+# Whitelist pom.xml files
+!pom.xml
+!**/pom.xml
+
+# Whitelist src directories and everything inside them
+!**/src/**
+
+# Allow .gitignore
+!.gitignore
